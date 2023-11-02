@@ -1,5 +1,5 @@
 function identity() 
-{
+{   
     document.getElementById('isang').innerHTML = "";
     document.getElementById('faust').innerHTML = "";
     document.getElementById('donki').innerHTML = "";
@@ -63,182 +63,129 @@ function identity()
     var greg =['LCB 囚人','南部リウ協会 6課',
     'G社 課長代理','りょ・ミ・パ 助手',
     'バラのスパナ工房 フィクサー','南部ツヴァイ協会 4課'];
-
-
-    if (document.getElementById("switch").checked)
-    {
-        // チェックされている場合の処理
-        var ninzuu=Math.floor( Math.random() * 7 )+1;    
-
-        var memory=[0,0,0,0,0,0,0];
     
-        for(var i=0;i<ninzuu;i++)
-        {
-            var loopend=0;
-            while(loopend==0)  
-            {
-                var hold = Math.floor( Math.random() * 12 )+1;
-                
-                loopend=1;
-                for(j=0;j<memory.length;j++)
-                {
-                    if(hold==memory[j])
-                    {
-                        loopend=0;
-                        break;
-                    }
-                }
-            }      
-            
-            memory[ninzuu]=hold;        
-            
-            //イサン
-            if(memory[ninzuu]==1)
-            {
-                var randamisang = Math.floor( Math.random() * isang.length ); 
-                var isangtext = isang[randamisang];   
-                document.getElementById('isang').innerHTML = isangtext;
-            }
-            //ファウスト
-            if(memory[ninzuu]==2)
-            {                
-                var randamfaust = Math.floor( Math.random() * faust.length );    
-                var fausttext = faust[randamfaust];
-                document.getElementById('faust').innerHTML = fausttext;
-            }
-            //ドンキホーテ
-            if(memory[ninzuu]==3)
-            {                
-                var randamdonki = Math.floor( Math.random() * donki.length );  
-                var donkitext = donki[randamdonki];  
-                document.getElementById('donki').innerHTML = donkitext;
-            }
-            //良秀
-            if(memory[ninzuu]==4)
-            {                
-                var randamryosyu = Math.floor( Math.random() * ryosyu.length ); 
-                var ryosyutext = ryosyu[randamryosyu];  
-                document.getElementById('ryosyu').innerHTML = ryosyutext; 
-            }
-            //ムルソー
-            if(memory[ninzuu]==5)
-            {                
-                var randammuruso = Math.floor( Math.random() * muruso.length ); 
-                var murusotext = muruso[randammuruso];   
-                document.getElementById('muruso').innerHTML = murusotext;
-            }
-            //ホンル
-            if(memory[ninzuu]==6)
-            {                
-                var randamhongru = Math.floor( Math.random() * hongru.length ); 
-                var hongrutext = hongru[randamhongru]; 
-                document.getElementById('hongru').innerHTML = hongrutext;
-            }
-            //ヒースクリフ
-            if(memory[ninzuu]==7)
-            {                
-                var randamhearth = Math.floor( Math.random() * hearth.length );
-                var hearthtext = hearth[randamhearth];
-                document.getElementById('hearth').innerHTML = hearthtext; 
-            }
-            //イシュメール
-            if(memory[ninzuu]==8)
-            {                
-                var randamishu = Math.floor( Math.random() * ishu.length );   
-                var ishutext = ishu[randamishu];
-                document.getElementById('ishu').innerHTML = ishutext; 
-            }
-            //ロージャ
-            if(memory[ninzuu]==9)
-            {                
-                var randamrojion = Math.floor( Math.random() * rojion.length );  
-                var rojiontext = rojion[randamrojion];
-                document.getElementById('rojion').innerHTML = rojiontext;
-            }
-            //シンクレア
-            if(memory[ninzuu]==10)
-            {                
-                var randamsincrea = Math.floor( Math.random() * sincrea.length );    
-                var sincreatext = sincrea[randamsincrea];
-                document.getElementById('sincrea').innerHTML = sincreatext;
-            }
-            //ウーティス
-            if(memory[ninzuu]==11)
-            {                
-                var randamuteirs = Math.floor( Math.random() * uteirs.length );   
-                var uteirstext = uteirs[randamuteirs]; 
-                document.getElementById('uters').innerHTML = uteirstext;
-            }
-            //グレゴール
-            if(memory[ninzuu]==12)
-            {                
-                var randamgreg = Math.floor( Math.random() * greg.length ); 
-                var gregtext = greg[randamgreg]; 
-                document.getElementById('greg').innerHTML = gregtext;
-            }
-        }
+    var sinners = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    sinnerShuffle(sinners);
+
+    
+    const form = document.forms.modeselect;
+    var select = form.mode.value;
+ 
+    // 人数の処理
+    if(select=="100")
+    {
+        var ninzuu = Math.floor( Math.random() * 7)+1;
+    }
+    else if(select=="1000")
+    {
+        var ninzuu = Math.floor( Math.random() * 12)+1;
     }
     else
     {
-        // チェックされていない場合の処理
+        var ninzuu = select;
+    }
+
+    for(var i=0;i<ninzuu;i++)
+    {              
         //イサン
-        var randamisang = Math.floor( Math.random() * isang.length );   
-        var isangtext = isang[randamisang]; 
-        document.getElementById('isang').innerHTML = isangtext;
-
+        if(sinners[i]==1)
+        {
+            var randamisang = Math.floor( Math.random() * isang.length ); 
+            var isangtext = isang[randamisang];   
+            document.getElementById('isang').innerHTML = isangtext;
+        }
         //ファウスト
-        var randamfaust = Math.floor( Math.random() * faust.length );  
-        var fausttext = faust[randamfaust];  
-        document.getElementById('faust').innerHTML = fausttext;
-
+        if(sinners[i]==2)
+        {                
+            var randamfaust = Math.floor( Math.random() * faust.length );    
+            var fausttext = faust[randamfaust];
+            document.getElementById('faust').innerHTML = fausttext;
+        }
         //ドンキホーテ
-        var randamdonki = Math.floor( Math.random() * donki.length );  
-        var donkitext = donki[randamdonki];  
-        document.getElementById('donki').innerHTML = donkitext;
-
+        if(sinners[i]==3)
+        {                
+            var randamdonki = Math.floor( Math.random() * donki.length );  
+            var donkitext = donki[randamdonki];  
+            document.getElementById('donki').innerHTML = donkitext;
+        }
         //良秀
-        var randamryosyu = Math.floor( Math.random() * ryosyu.length );   
-        var ryosyutext = ryosyu[randamryosyu]; 
-        document.getElementById('ryosyu').innerHTML = ryosyutext;
-        
+        if(sinners[i]==4)
+        {                
+            var randamryosyu = Math.floor( Math.random() * ryosyu.length ); 
+            var ryosyutext = ryosyu[randamryosyu];  
+            document.getElementById('ryosyu').innerHTML = ryosyutext; 
+        }
         //ムルソー
-        var randammuruso = Math.floor( Math.random() * muruso.length );  
-        var murusotext = muruso[randammuruso]; 
-        document.getElementById('muruso').innerHTML = murusotext; 
-
+        if(sinners[i]==5)
+        {                
+            var randammuruso = Math.floor( Math.random() * muruso.length ); 
+            var murusotext = muruso[randammuruso];   
+            document.getElementById('muruso').innerHTML = murusotext;
+        }
         //ホンル
-        var randamhongru = Math.floor( Math.random() * hongru.length ); 
-        var hongrutext = hongru[randamhongru]; 
-        document.getElementById('hongru').innerHTML = hongrutext;
-
+        if(sinners[i]==6)
+        {                
+            var randamhongru = Math.floor( Math.random() * hongru.length ); 
+            var hongrutext = hongru[randamhongru]; 
+            document.getElementById('hongru').innerHTML = hongrutext;
+        }
         //ヒースクリフ
-        var randamhearth = Math.floor( Math.random() * hearth.length ); 
-        var hearthtext = hearth[randamhearth];   
-        document.getElementById('hearth').innerHTML = hearthtext;
-        
+        if(sinners[i]==7)
+        {                
+            var randamhearth = Math.floor( Math.random() * hearth.length );
+            var hearthtext = hearth[randamhearth];
+            document.getElementById('hearth').innerHTML = hearthtext; 
+        }
         //イシュメール
-        var randamishu = Math.floor( Math.random() * ishu.length );
-        var ishutext = ishu[randamishu];    
-        document.getElementById('ishu').innerHTML = ishutext;
-
+        if(sinners[i]==8)
+        {                
+            var randamishu = Math.floor( Math.random() * ishu.length );   
+            var ishutext = ishu[randamishu];
+            document.getElementById('ishu').innerHTML = ishutext; 
+        }
         //ロージャ
-        var randamrojion = Math.floor( Math.random() * rojion.length );
-        var rojiontext = rojion[randamrojion];    
-        document.getElementById('rojion').innerHTML = rojiontext;
-
+        if(sinners[i]==9)
+        {                
+            var randamrojion = Math.floor( Math.random() * rojion.length );  
+            var rojiontext = rojion[randamrojion];
+            document.getElementById('rojion').innerHTML = rojiontext;
+        }
         //シンクレア
-        var randamsincrea = Math.floor( Math.random() * sincrea.length );
-        var sincreatext = sincrea[randamsincrea];    
-        document.getElementById('sincrea').innerHTML = sincreatext;
-
+        if(sinners[i]==10)
+        {                
+            var randamsincrea = Math.floor( Math.random() * sincrea.length );    
+            var sincreatext = sincrea[randamsincrea];
+            document.getElementById('sincrea').innerHTML = sincreatext;
+        }
         //ウーティス
-        var randamuteirs = Math.floor( Math.random() * uteirs.length ); 
-        var uteirstext = uteirs[randamuteirs];   
-        document.getElementById('uters').innerHTML = uteirstext;
-
+        if(sinners[i]==11)
+        {                
+            var randamuteirs = Math.floor( Math.random() * uteirs.length );   
+            var uteirstext = uteirs[randamuteirs]; 
+            document.getElementById('uters').innerHTML = uteirstext;
+        }
         //グレゴール
-        var randamgreg = Math.floor( Math.random() * greg.length );
-        var gregtext = greg[randamgreg];   
-        document.getElementById('greg').innerHTML = gregtext;      
-    }       
+        if(sinners[i]==12)
+        {                
+            var randamgreg = Math.floor( Math.random() * greg.length ); 
+            var gregtext = greg[randamgreg]; 
+            document.getElementById('greg').innerHTML = gregtext;
+        }
+    }
+    
+}
+
+function sinnerShuffle(array) 
+{
+    for(let i = (array.length - 1); 0 < i; i--)
+    {  
+      // 0〜(i+1)の範囲で値を取得
+      let r = Math.floor(Math.random() * (i + 1));
+  
+      // 要素の並び替え
+      let tmp = array[i];
+      array[i] = array[r];
+      array[r] = tmp;
+    }
+    return array;
 }
